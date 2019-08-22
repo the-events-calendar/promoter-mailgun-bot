@@ -1,0 +1,26 @@
+{
+  "extends": [
+    "products"
+  ],
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "globals": {
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "linebreak-style": 0,
+    "no-console": 0,
+    "max-len": 0,
+    "import/no-unresolved": 0,
+    "no-useless-escape": 0,
+    "camelcase": 0
+  },
+  "settings": {
+  }
+}

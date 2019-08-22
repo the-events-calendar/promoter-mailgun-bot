@@ -1,0 +1,22 @@
+{
+  "name": "mailgun",
+  "version": "1.0.0",
+  "description": "",
+  "main": "events.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "mailgun-js": "^0.22.0"
+  },
+  "cloud-repo-tools": {
+    "requiresKeyFile": true,
+    "requiresProjectId": true
+  },
+  "devDependencies": {
+    "eslint-config-products": "github:moderntribe/eslint-config-products#spotfix/lock-dependencies"
+  }
+}
