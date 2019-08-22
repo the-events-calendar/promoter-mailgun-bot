@@ -6,6 +6,9 @@ const clone = require( 'lodash/clone' );
 const isInteger = require( 'lodash/isInteger' );
 const isUndefined = require( 'lodash/isUndefined' );
 
+/**
+ * Colors to use in slack notification based off mailgun event type
+ */
 const keyColors = {
 	accepted: '#9bc0ab',
 	delivered: '#629976',
@@ -18,6 +21,12 @@ const keyColors = {
 	opened: '#3770df',
 };
 
+/**
+ * Generates attachments used by slack from mailgun totals
+ *
+ * @param {object} totals Total stats
+ * @returns {array<object>} Attachments used by slack
+ */
 function generateAttachments( totals ) {
 	return map( totals, ( field, key ) => ( {
 		color: keyColors[ key ] || '#3367d6',
@@ -26,6 +35,14 @@ function generateAttachments( totals ) {
 	} ) );
 }
 
+/**
+ * Reduce mailgun field stats
+ *
+ * @param {object} mainAcc Parent accumulator
+ * @param {object} fieldValue Field of totals
+ * @param {string} fieldKey Key totals belongs to
+ * @returns {object} Object with accumulated totals
+ */
 const reduceField = ( mainAcc, fieldValue, fieldKey ) => {
 	const root = clone( mainAcc[ fieldKey ] ) || {};
 
@@ -40,6 +57,12 @@ const reduceField = ( mainAcc, fieldValue, fieldKey ) => {
 	return root;
 };
 
+/**
+ *	Sum totals within a range of mailgun stats
+ *
+ * @param {object} mailgunStats Stats fields from mailgun
+ * @returns {object} Total stats from range of dates
+ */
 function aggregateTotals( mailgunStats ) {
 	return reduce( mailgunStats, ( acc, stat ) => {
 		each( stat, ( value, key ) => {
